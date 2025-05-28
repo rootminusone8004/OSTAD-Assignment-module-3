@@ -51,5 +51,5 @@ jobs:
           pm2 delete all || true
           pm2 start './src/server.js' --name node-app
 
-      - name: show logs
-        # run: pm2 logs node-app
+      # - name: show logs
+      #   run: pm2 logs node-app
