@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: checkout code
-        uses: action/checkout@v4
+        uses: action/checkout@v3
 
       - name: download the test test-result
         uses: action/download-artifact@v4
@@ -50,4 +50,3 @@ jobs:
           npm install -g pm2
           pm2 delete all || true
           pm2 start "./src/server.js" --name node-app
-          pm2 save
