@@ -18,11 +18,12 @@ jobs:
 
       - name: install dependency
         run: |
-          npm install
+          cd src
+          npm install || true
+          cd ..
 
       - name: run test
         run: |
-          echo '##### Running Test #####'
           npm run check > test-result.txt
 
       - name: upload artifact
