@@ -17,10 +17,7 @@ jobs:
           node-version: '22'
 
       - name: install dependency
-        run: |
-          cd src
-          npm install || true
-          cd ..
+        run: npm install
 
       - name: run test
         run: |
@@ -55,4 +52,4 @@ jobs:
           pm2 start './src/server.js' --name node-app
 
       - name: show logs
-        run: pm2 logs node-app
+        # run: pm2 logs node-app
