@@ -6,7 +6,7 @@ on:
 jobs:
   test:
     name: test
-    runs-on: ubuntu-latest
+    runs-on: sample
     steps:
       - name: checkout code
         uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
   deploy:
     name: deploy
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: sample
 
     steps:
       - name: checkout code
