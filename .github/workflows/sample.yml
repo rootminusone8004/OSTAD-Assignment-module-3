@@ -49,6 +49,6 @@ jobs:
 
       - name: live application
         run: |
-          npm install -g pm2
+          sudo npm install -g pm2
           pm2 delete all || true
           pm2 start "./src/server.js" --name node-app
