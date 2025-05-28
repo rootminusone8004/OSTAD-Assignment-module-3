@@ -1,0 +1,53 @@
+name: CI/CD demonstration
+on:
+  push:
+    branches: main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: action/checkout@v4
+
+      - name: setup environment
+        uses: action/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: install dependency
+        run: |
+          npm install
+
+      - name: run test
+        run: |
+          echo '##### Running Test #####'
+          npm run check > test-result.txt
+
+      - name: upload artifact
+        uses: action/upload-artifact@v4
+        with:
+          name: test-result
+          path: test-result.txt
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: action/checkout@v4
+
+      - name: download the test test-result
+        uses: action/download-artifact@v4
+        with:
+          name: test-result
+
+      - name: show the test results
+        run: cat test-result.txt
+
+      - name: live application
+        run: |
+          npm install -g pm2
+          pm2 delete all || true
+          pm2 start "./src/server.js" --name node-app
+          pm2 save
