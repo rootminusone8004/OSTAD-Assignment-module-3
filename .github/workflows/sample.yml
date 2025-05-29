@@ -45,6 +45,14 @@ jobs:
       - name: show the test results
         run: cat test-result.txt
 
+      - name: show the test results
+        run: cat test-result.txt
+       
+      - name: setup environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
       - name: live application
         run: |
           sudo npm install -g pm2
